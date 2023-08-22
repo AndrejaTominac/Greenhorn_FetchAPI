@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>iTunes Search</h1>
+
+    <form autocomplete="off">
+        <input type="text" id="input-box" name="input-box" placeholder="Search..." autofocus />
+        <button id="search">Search</button>
+    </form>
+
+    <div class="container">
+
+        <div class="loader-wrapper">
+            <div class="loader" role="status" id="loading">
+                <h2>Loading...</h2>
+                <div class="drops">
+                    <span style="--i:0;"></span>
+                    <span style="--i:1;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:3;"></span>
+                    <span style="--i:4;"></span>
+                    <span style="--i:5;"></span>
+                    <span style="--i:6;"></span>
+                    <span style="--i:7;"></span>
+                </div>
+            </div>
+
+            <svg>
+                <filter id="blurMe">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="5"></feGaussianBlur>
+                </filter>
+            </svg>
+
+        </div>
+
+        <div class="results-wrapper">
+            <h2>Please see the results below:</h2>
+            <!-- <div class="results"> -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- Minifier -->
+    <!-- <script src="minify-js.js"></script> -->
+
+</body>
+
+</html>

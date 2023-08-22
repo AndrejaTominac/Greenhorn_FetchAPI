@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Poppins:wght@400;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(135deg, #979c10, #7246c3, #292b7c);
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: black;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 500;
+}
+
+form {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  margin-bottom: 25px;
+}
+
+input#input-box {
+  border: none;
+  outline: none;
+  background: wheat;
+  width: 100%;
+  margin-right: 10px;
+  font-size: 14px;
+  line-height: 1.25;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  transition: border-color 0.25s ease-in;
+}
+
+input#input-box:focus {
+  border-color: black;
+}
+
+button#search {
+  border: none;
+  outline: none;
+  padding: 15px 40px;
+  background: #000000;
+  color: wheat;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 20px;
+  width: auto;
+}
+
+button#search:hover {
+  box-shadow: 2px 2px 8px 8px #000000af;
+  font-weight: bold;
+  transition: box-shadow 0.125s ease-in-out;
+}
+
+/* LOADER */
+
+.container {
+  font-size: 12px;
+  width: 100%;
+}
+
+.loader-wrapper {
+  display: none;
+}
+.loader-wrapper.loading {
+  display: block;
+}
+.loader-text {
+  display: block;
+  font-size: 20;
+  text-align: center;
+}
+
+.loader {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader h2 {
+  position: absolute;
+  color: wheat;
+  font-size: 1.5em;
+  font-weight: 500;
+  animation: animateText 4.5s ease-in-out infinite;
+}
+
+.drops {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: url(#blurMe);
+}
+
+.drops span {
+  position: absolute;
+  left: 0;
+  transform-origin: 80px;
+  width: 100px;
+  height: 100px;
+  /* background: wheat; */
+  border-radius: 50%;
+  animation: animateDrops 4.5s ease-in-out infinite;
+  animation-delay: calc(0.15s * var(--i));
+}
+
+/* REZULTAT: TABLICA */
+.results-wrapper {
+  display: none;
+  width: 100%;
+}
+
+.results-wrapper h2 {
+  text-align: center;
+}
+
+.results-wrapper.results-showing {
+  display: block;
+}
+
+.results-wrapper table {
+  margin: 24px auto 0;
+  border: #000000 solid;
+  border-collapse: collapse;
+}
+
+th {
+  border: #000000 0.3px solid;
+  vertical-align: middle;
+  background: wheat;
+  font-size: 16px;
+  padding: 15px;
+}
+
+td {
+  border: solid 1px rgb(65, 64, 64);
+  color: wheat;
+  font-size: 14px;
+  width: auto;
+  text-align: left;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+tr:not(thead > tr) {
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  padding: 15px;
+}
+
+tr:nth-of-type(even) {
+  background: #6e4fe9;
+  vertical-align: middle;
+}
+
+tr:not(thead > tr):hover {
+  background-color: #228dff;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.results p {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
+}
+
+/* ANIMACIJE ZA LOADING */
+@keyframes animateDrops {
+  0% {
+    width: 100px;
+    height: 100px;
+    transform: rotate(0deg) translateX(20px);
+  }
+
+  40%,
+  70% {
+    width: 20px;
+    height: 20px;
+    transform: rotate(calc(360deg / 8 * var(--i)));
+    box-shadow: 0 0 0 10px wheat;
+  }
+
+  90%,
+  100% {
+    width: 100px;
+    height: 100px;
+    transform: rotate(0deg) translateX(20px);
+  }
+}
+
+@keyframes animateText {
+  0% {
+    opacity: 0;
+  }
+
+  40%,
+  70% {
+    opacity: 1;
+  }
+
+  90%,
+  100% {
+    opacity: 0;
+  }
+}
+
+svg {
+  width: 0;
+  height: 0;
+}
+
+.results {
+  width: 100%;
+  overflow: auto;
+}
+.results > table {
+  width: 776px;
+}
+
+/* RESPONZIVNOST */
+@media (max-width: 680px) {
+  form {
+    flex-wrap: wrap;
+  }
+  input#input-box {
+    margin-right: 0;
+    margin-bottom: 24px;
+    flex: 0 0 auto;
+  }
+  button#search {
+    margin: 0 auto;
+  }
+}
